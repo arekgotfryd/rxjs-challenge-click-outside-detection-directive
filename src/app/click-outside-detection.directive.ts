@@ -38,20 +38,16 @@ export class ClickOutsideDetectionDirective {
 
   @HostListener('mousedown', ['$event'])
   mousedown(event) {
-    if (this.modal.contains(event.target)) {
-      this.mouseDownOutside$.next(false);
-    } else {
-      this.mouseDownOutside$.next(true);
-    }
+    this.modal.contains(event.target)
+      ? this.mouseDownOutside$.next(false)
+      : this.mouseDownOutside$.next(true);
   }
 
   @HostListener('mouseup', ['$event'])
   mouseup(event) {
-    if (this.modal.contains(event.target)) {
-      this.mouseUpOutside$.next(false);
-    } else {
-      this.mouseUpOutside$.next(true);
-    }
+    this.modal.contains(event.target)
+      ? this.mouseUpOutside$.next(false)
+      : this.mouseUpOutside$.next(true);
   }
 
   ngAfterViewInit() {
