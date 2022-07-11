@@ -18,11 +18,12 @@ export class ClickOutsideDetectionDirective {
   mouseDownOutside$ = new Subject<boolean>();
   mouseUpOutside$ = new Subject<boolean>();
   modal;
+  clickOutsideSub;
   constructor(
     private elementRef: ElementRef,
     @Inject(ModalService) readonly modal$$: ModalService
   ) {
-    this.mouseUpOutside$
+    this.clickOutsideSub = this.mouseUpOutside$
       .pipe(
         withLatestFrom(this.mouseDownOutside$),
         filter(([mouseUpOutside, mouseDownOutside]) => {
@@ -61,5 +62,9 @@ export class ClickOutsideDetectionDirective {
     } else {
       this.modal = this.elementRef.nativeElement.querySelector('.modal');
     }
+  }
+
+  ngOnDestroy() {
+    this.clickOutsideSub?.unsubscribe();
   }
 }
