@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+<div
+  [clickOutsideDetection]="'modal'"
+  *ngIf="modal$$ | async as modal"
+  class="overlay"
+>
+  <div class="modal">
+    {{ modal }}
+    <button (click)="modal$$.next(null)">Close</button>
+  </div>
+</div>

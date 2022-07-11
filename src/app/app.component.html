@@ -1,0 +1,17 @@
+<app-portal>
+  <blockquote>
+    There is a button that opens modal. Allow user to close modal clicking
+    outside it or pressing Escape keyboard key.
+
+    <p>
+      <strong>Be very attentive:</strong> you need only respond to clicks that started and ended on overlay (for
+      example, if it started on overlay and ended on modal, do not close modal)
+    </p>
+  </blockquote>
+
+  <input #text value="hello" />
+
+  <button (click)="modal$$.next(text.value)">
+    Open modal
+  </button>
+</app-portal>
